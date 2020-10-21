@@ -10,7 +10,7 @@ public class AddressBookMain {
 
         while (true) {
 
-            System.out.println("Choose:\n 1.Add person\n 2.Edit person");
+            System.out.println("Choose:\n 1.Add person\n 2.Edit person\n 3.Delete person");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -22,6 +22,10 @@ public class AddressBookMain {
 
                 case 2:
                     addressBookManager.editPerson();
+                    break;
+
+                case 3:
+                    addressBookManager.deletePerson();
                     break;
 
                 default:
