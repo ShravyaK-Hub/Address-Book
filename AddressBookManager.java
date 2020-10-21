@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class AddressBookManager implements IAddressBook {
@@ -137,6 +138,18 @@ public class AddressBookManager implements IAddressBook {
             } else {
                 System.out.println("Contact does not exist");
             }
+
+        }
+
+    }
+
+    public void sortAlphabetically() {
+
+        Collections.sort(contacts, new SortByName());
+
+        for (Person person : contacts) {
+
+            person.display();
 
         }
 
