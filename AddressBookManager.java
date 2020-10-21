@@ -6,6 +6,7 @@ public class AddressBookManager implements IAddressBook {
     String firstName, lastName, address, city, state, zip, phoneNumber;
     ArrayList<Person> contacts = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
+    Person personInfo;
 
     public void createPerson() {
         System.out.println("Enter first name: ");
@@ -22,7 +23,7 @@ public class AddressBookManager implements IAddressBook {
         zip = scanner.nextLine();
         System.out.println("Enter phone number: ");
         phoneNumber = scanner.nextLine();
-        Person personInfo = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
+        personInfo = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
         contacts.add(personInfo);
         System.out.println("Contact added!");
     }
@@ -87,6 +88,28 @@ public class AddressBookManager implements IAddressBook {
                         System.out.println("Invalid input");
 
                 }
+
+            } else {
+                System.out.println("Contact does not exist");
+            }
+
+        }
+
+    }
+
+    public void deletePerson() {
+        for (int i = 0; i < contacts.size(); i++) {
+
+            personInfo = contacts.get(i);
+            System.out.println("Enter first name: ");
+            firstName = scanner.nextLine();
+            System.out.println("Enter last name: ");
+            lastName = scanner.nextLine();
+
+            if (firstName.equals(personInfo.firstName) && lastName.equals(personInfo.lastName)) {
+
+                contacts.remove(i);
+                System.out.println("Contact deleted");
 
             } else {
                 System.out.println("Contact does not exist");
