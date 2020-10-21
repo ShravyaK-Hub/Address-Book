@@ -17,7 +17,13 @@ public class AddressBookMain {
             switch (choice) {
 
                 case 1:
-                    addressBookManager.createPerson();
+                    System.out.println("How many people do you want to add? ");
+                    int numberOfPeople = scanner.nextInt();
+                    scanner.nextLine();
+                    while(numberOfPeople != 0) {
+                        addressBookManager.createPerson();
+                        numberOfPeople--;
+                    }
                     break;
 
                 case 2:
