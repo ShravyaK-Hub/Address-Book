@@ -155,4 +155,30 @@ public class AddressBookManager implements IAddressBook {
 
     }
 
+    public void sortByCityStateZip() {
+
+        System.out.println("Sort by: 1.City/n 2.State/n 3.City ");
+        int choice = scanner.nextInt();
+
+        switch(choice) {
+
+            case 1:
+                Collections.sort(contacts, new SortByCity());
+                break;
+
+            case 2:
+                Collections.sort(contacts, new SortByState());
+                break;
+
+            case 3:
+                Collections.sort(contacts, new SortByZip());
+                break;
+
+            default:
+                System.out.println("Invalid input");
+
+        }
+
+    }
+
 }
