@@ -10,7 +10,7 @@ public class AddressBookMain {
 
         while (true) {
 
-            System.out.println("Choose:\n 1.Add person\n 2.Edit person\n 3.Delete person\n 4.Sort Alphabetically\n 5.Sort by City, State or Zip");
+            System.out.println("Choose:\n 1.Add person\n 2.Edit person\n 3.Delete person\n 4.Sort Alphabetically\n 5.Sort by City, State or Zip\n 6.View person by city or state");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -41,6 +41,9 @@ public class AddressBookMain {
                 case 5:
                     addressBookManager.sortByCityStateZip();
                     break;
+
+                case 6:
+                    addressBookManager.viewPersonByCityState();
 
                 default:
                     System.out.println("Invalid input");
