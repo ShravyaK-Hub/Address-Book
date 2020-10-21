@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBookManager implements IAddressBook {
 
@@ -8,6 +6,9 @@ public class AddressBookManager implements IAddressBook {
     ArrayList<Person> contacts = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
     Person personInfo;
+    int choice;
+    HashMap<Person, String> CityPersonMap = new HashMap<>();
+    HashMap<Person, String> StatePersonMap = new HashMap<>();
 
     public void createPerson() {
         System.out.println("Enter first name: ");
@@ -49,6 +50,8 @@ public class AddressBookManager implements IAddressBook {
     public void addPersonToContacts() {
         personInfo = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
         contacts.add(personInfo);
+        CityPersonMap.put(personInfo, city);
+        StatePersonMap.put(personInfo, state);
         System.out.println("Contact added!");
     }
 
@@ -64,7 +67,7 @@ public class AddressBookManager implements IAddressBook {
             if (firstName.equals(editPersonInfo.firstName) && lastName.equals(editPersonInfo.lastName)) {
 
                 System.out.println("Edit:\n 1.Address\n 2.City\n 3.State\n 4.Zip\n 5.Phone number ");
-                int choice = scanner.nextInt();
+                choice = scanner.nextInt();
 
                 switch (choice) {
 
@@ -184,6 +187,44 @@ public class AddressBookManager implements IAddressBook {
             person.display();
 
         }
+
+    }
+
+    public void viewPersonByCityState() {
+        Set<Person> keys = new HashSet<>();
+        System.out.println("Choose:\n 1.city\n 2.State ");
+        choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch(choice) {
+
+            case 1:
+                System.out.println("Enter city: ");
+                city = scanner.nextLine();
+                for (Map.Entry<Person, String> person : CityPersonMap.entrySet()) {
+                    if (Objects.equals(city, person.getValue())) {
+                        keys.add(person.getKey());
+                        person.getKey().display();
+                    }
+                }
+                break;
+
+            case 2:
+                System.out.println("Enter state: ");
+                state = scanner.nextLine();
+                for (Map.Entry<Person, String> person : StatePersonMap.entrySet()) {
+                    if (Objects.equals(state, person.getValue())) {
+                        keys.add(person.getKey());
+                        person.getKey().display();
+                    }
+                }
+                break;
+
+            default:
+                System.out.println("Invalid input");
+
+        }
+
 
     }
 
