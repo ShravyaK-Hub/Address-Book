@@ -10,7 +10,7 @@ public class AddressBookMain {
 
         while (true) {
 
-            System.out.println("Choose:\n 1.Add person\n 2.Edit person\n 3.Delete person\n 4.Sort Alphabetically\n 5.Sort by City, State or Zip\n 6.View person by city or state");
+            System.out.println("Choose:\n 1.Add person\n 2.Edit person\n 3.Delete person\n 4.Sort Alphabetically\n 5.Sort by City, State or Zip\n 6.View person by city or state\n 7.View people in city or state");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -44,6 +44,10 @@ public class AddressBookMain {
 
                 case 6:
                     addressBookManager.viewPersonByCityState();
+                    break;
+
+                case 7:
+                    addressBookManager.viewPeopleInCityState();
                     break;
 
                 default:
