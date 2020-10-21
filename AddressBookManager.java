@@ -157,7 +157,7 @@ public class AddressBookManager implements IAddressBook {
 
     public void sortByCityStateZip() {
 
-        System.out.println("Sort by: 1.City/n 2.State/n 3.City ");
+        System.out.println("Sort by:\n 1.City\n 2.State\n 3.Zip ");
         int choice = scanner.nextInt();
 
         switch(choice) {
@@ -176,6 +176,12 @@ public class AddressBookManager implements IAddressBook {
 
             default:
                 System.out.println("Invalid input");
+
+        }
+
+        for (Person person : contacts) {
+
+            person.display();
 
         }
 
