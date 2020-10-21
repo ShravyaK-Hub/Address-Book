@@ -9,6 +9,7 @@ public class AddressBookManager implements IAddressBook {
     int choice;
     HashMap<Person, String> CityPersonMap = new HashMap<>();
     HashMap<Person, String> StatePersonMap = new HashMap<>();
+    Set<Person> keys = new HashSet<>();
 
     public void createPerson() {
         System.out.println("Enter first name: ");
@@ -57,6 +58,7 @@ public class AddressBookManager implements IAddressBook {
 
     public void editPerson() {
 
+        boolean personExists = false;
         System.out.print("Enter first name: ");
         firstName = scanner.nextLine();
         System.out.println("Enter last name: ");
@@ -76,6 +78,7 @@ public class AddressBookManager implements IAddressBook {
                         scanner.nextLine();
                         address = scanner.nextLine();
                         editPersonInfo.address = address;
+                        personExists = true;
                         System.out.println("Contact updated");
                         break;
 
@@ -84,6 +87,7 @@ public class AddressBookManager implements IAddressBook {
                         scanner.nextLine();
                         city = scanner.nextLine();
                         editPersonInfo.city = city;
+                        personExists = true;
                         System.out.println("Contact updated");
                         break;
 
@@ -92,6 +96,7 @@ public class AddressBookManager implements IAddressBook {
                         scanner.nextLine();
                         state = scanner.nextLine();
                         editPersonInfo.state = state;
+                        personExists = true;
                         System.out.println("Contact updated");
                         break;
 
@@ -100,6 +105,7 @@ public class AddressBookManager implements IAddressBook {
                         scanner.nextLine();
                         zip = scanner.nextLine();
                         editPersonInfo.zip = zip;
+                        personExists = true;
                         System.out.println("Contact updated");
                         break;
 
@@ -108,6 +114,7 @@ public class AddressBookManager implements IAddressBook {
                         scanner.nextLine();
                         phoneNumber = scanner.nextLine();
                         editPersonInfo.phoneNumber = phoneNumber;
+                        personExists = true;
                         System.out.println("Contact updated");
                         break;
 
@@ -116,10 +123,12 @@ public class AddressBookManager implements IAddressBook {
 
                 }
 
-            } else {
-                System.out.println("Contact does not exist");
             }
 
+        }
+
+        if(!personExists) {
+            System.out.println("Contact does not exist");
         }
 
     }
@@ -191,7 +200,6 @@ public class AddressBookManager implements IAddressBook {
     }
 
     public void viewPersonByCityState() {
-        Set<Person> keys = new HashSet<>();
         System.out.println("Choose:\n 1.city\n 2.State ");
         choice = scanner.nextInt();
         scanner.nextLine();
@@ -199,24 +207,48 @@ public class AddressBookManager implements IAddressBook {
         switch(choice) {
 
             case 1:
+                System.out.println("Enter first name: ");
+                firstName = scanner.nextLine();
+                System.out.println("Enter last name: ");
+                lastName = scanner.nextLine();
                 System.out.println("Enter city: ");
                 city = scanner.nextLine();
                 for (Map.Entry<Person, String> person : CityPersonMap.entrySet()) {
                     if (Objects.equals(city, person.getValue())) {
                         keys.add(person.getKey());
-                        person.getKey().display();
                     }
+                }
+                for (Person personData : keys) {
+                    if (firstName.equals(personData.firstName) && lastName.equals(personData.lastName) && city.equals(personData.city)) {
+                        personData.display();
+                    }
+                    break;
+                }
+                if(keys.size() == 0) {
+                    System.out.println("Contact does not exist");
                 }
                 break;
 
             case 2:
+                System.out.println("Enter first name: ");
+                firstName = scanner.nextLine();
+                System.out.println("Enter last name: ");
+                lastName = scanner.nextLine();
                 System.out.println("Enter state: ");
                 state = scanner.nextLine();
                 for (Map.Entry<Person, String> person : StatePersonMap.entrySet()) {
                     if (Objects.equals(state, person.getValue())) {
                         keys.add(person.getKey());
-                        person.getKey().display();
                     }
+                }
+                for (Person personData : keys) {
+                    if (firstName.equals(personData.firstName) && lastName.equals(personData.lastName) && state.equals(personData.state)) {
+                        personData.display();
+                    }
+                    break;
+                }
+                if(keys.size() == 0) {
+                    System.out.println("Contact does not exist");
                 }
                 break;
 
@@ -224,7 +256,6 @@ public class AddressBookManager implements IAddressBook {
                 System.out.println("Invalid input");
 
         }
-
 
     }
 
