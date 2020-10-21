@@ -200,11 +200,12 @@ public class AddressBookManager implements IAddressBook {
     }
 
     public void viewPersonByCityState() {
+        keys.clear();
         System.out.println("Choose:\n 1.city\n 2.State ");
         choice = scanner.nextInt();
         scanner.nextLine();
 
-        switch(choice) {
+        switch (choice) {
 
             case 1:
                 System.out.println("Enter first name: ");
@@ -224,7 +225,7 @@ public class AddressBookManager implements IAddressBook {
                     }
                     break;
                 }
-                if(keys.size() == 0) {
+                if (keys.size() == 0) {
                     System.out.println("Contact does not exist");
                 }
                 break;
@@ -247,7 +248,7 @@ public class AddressBookManager implements IAddressBook {
                     }
                     break;
                 }
-                if(keys.size() == 0) {
+                if (keys.size() == 0) {
                     System.out.println("Contact does not exist");
                 }
                 break;
@@ -256,7 +257,42 @@ public class AddressBookManager implements IAddressBook {
                 System.out.println("Invalid input");
 
         }
+    }
 
+    public void viewPeopleInCityState() {
+        keys.clear();
+        System.out.println("Choose:\n 1.city\n 2.State ");
+        choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch(choice) {
+
+            case 1:
+                System.out.println("Enter city: ");
+                city = scanner.nextLine();
+                for (Map.Entry<Person, String> person : CityPersonMap.entrySet()) {
+                    if (Objects.equals(city, person.getValue())) {
+                        keys.add(person.getKey());
+                        person.getKey().display();
+                    }
+                }
+                break;
+
+            case 2:
+                System.out.println("Enter state: ");
+                state = scanner.nextLine();
+                for (Map.Entry<Person, String> person : StatePersonMap.entrySet()) {
+                    if (Objects.equals(state, person.getValue())) {
+                        keys.add(person.getKey());
+                        person.getKey().display();
+                    }
+                }
+                break;
+
+            default:
+                System.out.println("Invalid input");
+
+        }
     }
 
 }
