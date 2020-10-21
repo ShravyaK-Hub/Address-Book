@@ -23,6 +23,29 @@ public class AddressBookManager implements IAddressBook {
         zip = scanner.nextLine();
         System.out.println("Enter phone number: ");
         phoneNumber = scanner.nextLine();
+        if(contacts.size() > 0) {
+            for (int index = 0; index < contacts.size(); index++) {
+
+                personInfo = contacts.get(index);
+
+                if (firstName.equals(personInfo.firstName) && lastName.equals(personInfo.lastName)) {
+
+                    System.out.println("Person already exists");
+                    break;
+
+                } else {
+                    addPersonToContacts();
+                    break;
+
+                }
+
+            }
+        } else {
+            addPersonToContacts();
+        }
+    }
+
+    public void addPersonToContacts() {
         personInfo = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
         contacts.add(personInfo);
         System.out.println("Contact added!");
